@@ -27,8 +27,9 @@ ITEM_PIPELINES = {
 }
 
 DOWNLOADER_MIDDLEWARES = {
-    "weibo.middlewares.UserAgentRandomMiddleware":500
+    "weibo.middlewares.UserAgentRandomMiddleware":500,
     # "weibo.middlewares.WeiboDownloaderMiddleware":499,
+    "weibo.middlewares.RandomIPProxyMiddleware":498
 }
 
 

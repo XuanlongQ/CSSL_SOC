@@ -5,6 +5,10 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import json
+import requests
+from twisted.internet.error import TCPTimedOutError, TimeoutError  
+
 from logging import exception
 from random import random
 from scrapy import signals
@@ -122,7 +126,42 @@ class UserAgentRandomMiddleware(object):
         
         if ua:
             random_user_agent = ua.random
-            print(random_user_agent)
+            # print(random_user_agent)
             request.headers['User-Agent'] = random_user_agent
         else:
             request.headers['User-Agent'] = ""
+
+
+
+class RandomIPProxyMiddleware(object):
+    """Add Random IP proxy
+
+    Args:
+        object (spider): the main spider
+    """
+    def process_exception(self,request,exception,spider):
+        if isinstance(exception,TimeoutError):
+            self.process_request_back(request,spider)
+            return request
+        
+        elif isinstance(exception,TCPTimedOutError):
+            self.process_request_back(request,spider)
+            return request
+              
+    def freeProxy06(self):
+        """ FateZero http://proxylist.fatezero.org/ """
+        url = "http://proxylist.fatezero.org/proxy.list"
+        try:
+            resp_text = requests.get(url).text
+            for each in resp_text.split("\n"):
+                json_info = json.loads(each)
+                if json_info.get("country") == "CN":
+                    yield "%s:%s" % (json_info.get("host", ""), json_info.get("port", ""))
+        except Exception as e:
+            print(e)
+            
+    def process_request_back(self,request,spider):
+        proxy = self.freeProxy06()
+        IP_Proxy = 'http://'+ next(proxy)
+        print(IP_Proxy)
+        request.meta['proxy'] = IP_Proxy

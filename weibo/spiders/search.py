@@ -353,9 +353,9 @@ class SearchSpider(scrapy.Spider):
         print(keyword)
         print("here.....",response)
         
-        with open('response.html','w',encoding= 'utf-8') as f:
-            f.write(response.text)
-            f.close()
+        # with open('response.html','w',encoding= 'utf-8') as f:
+        #     f.write(response.text)
+        #     f.close()
 
         for sel in response.xpath("//div[@class='card-wrap']"):
             info = sel.xpath(
