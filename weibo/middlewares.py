@@ -5,7 +5,10 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from logging import exception
+from random import random
 from scrapy import signals
+from fake_useragent import UserAgent 
 
 
 class WeiboSpiderMiddleware(object):
@@ -101,3 +104,25 @@ class WeiboDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+
+class UserAgentRandomMiddleware(object):
+    """Generate random UserAgent 
+
+    Args:
+        object (spider): the main spider
+    """
+    def process_request(self,request,spider):
+        try:
+            ua = UserAgent()
+        except exception as e:
+            spider.logger.info('Spider opened: %s' % spider.name)
+            spider.logger.info('Spider can not get random UserAgent:',e)
+        
+        if ua:
+            random_user_agent = ua.random
+            print(random_user_agent)
+            request.headers['User-Agent'] = random_user_agent
+        else:
+            request.headers['User-Agent'] = ""

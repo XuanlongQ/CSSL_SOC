@@ -79,8 +79,7 @@ class SearchSpider(scrapy.Spider):
                                          meta={
                                              'base_url': base_url,
                                              'keyword': keyword,
-                                             'province': region,
-                                             'proxy': 'http://47.101.181.105:3128'
+                                             'province': region
                                          })
 
     def check_environment(self):

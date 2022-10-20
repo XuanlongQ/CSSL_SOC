@@ -12,7 +12,7 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept':
     'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
-    'cookie': 'SINAGLOBAL=8066624364689.468.1654595897483; _ga=GA1.2.2143779802.1660891878; XSRF-TOKEN=DTGPDRFieEJ87ph-s0x_38_n; _s_tentry=-; Apache=3725478500323.3203.1663853156352; ULV=1663853156358:8:3:1:3725478500323.3203.1663853156352:1663228271140; SSOLoginState=1664248251; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh9eBGkaC9wQ3PhJeh9NX_.5JpX5KMhUgL.Fo2N1hzReh5pSK22dJLoIp8Sdcyydgfy98vWdsLAqgxLI5tt; ALF=1696573019; SCF=AooKFXGlf0m7HsyOoy1_USSt0EmGm_vpQclLi5tPcfWu3Va1Li8HpjUgP_AePQYBJqcSBI7Vw6siFoO1wAqEHT8.; SUB=_2A25OOgKNDeRhGedJ41AZ8C7Nzj2IHXVtTnNFrDV8PUNbmtANLVb5kW9NUaL1Y1Ugnuz8AQmX_1sbWe0Tg2zbPKwA; UOR=login.sina.com.cn,vdisk.weibo.com,login.sina.com.cn; WBPSESS=VvGGQhCVSQnhtkxhRBuaUwB-Ek5UnNz86VE9yBtLQJL-n-bYPLHklf8axeHTLYwW-m4lAqVI1DwXG5opvfjzV45imh6hJD7N-PoysDX7d3FohBYg7tVBY3hyE-D-PifhPSiZAMHEH_7_3K-f8Wx-iA==',
+    'cookie': 'SINAGLOBAL=8066624364689.468.1654595897483; _ga=GA1.2.2143779802.1660891878; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh9eBGkaC9wQ3PhJeh9NX_.5JpX5KMhUgL.Fo2N1hzReh5pSK22dJLoIp8Sdcyydgfy98vWdsLAqgxLI5tt; UOR=login.sina.com.cn,vdisk.weibo.com,login.sina.com.cn; ALF=1697782821; SSOLoginState=1666246823; SCF=AooKFXGlf0m7HsyOoy1_USSt0EmGm_vpQclLi5tPcfWuBZRTZwr75xwVXO8KAEJYNY5scSQizTETwqzuJXGt4cg.; SUB=_2A25OVJj4DeRhGedJ41AZ8C7Nzj2IHXVtI40wrDV8PUNbmtANLUr2kW9NUaL1YwJ6qkXDvUOisAWZj-G1IlU4j66j; _s_tentry=login.sina.com.cn; Apache=654045235353.2245.1666246825428; ULV=1666246825446:12:4:3:654045235353.2245.1666246825428:1666082380756; XSRF-TOKEN=7Ckm4ckhNr6QVc5Pe8IbmCk-; WBPSESS=VvGGQhCVSQnhtkxhRBuaUyVBCdMk4nlySnVYpDmdebhuBV4D7iQ8nfrK4i2DRstzRmGFrCZ5Tip2FhJIn7mMLpkx3Fl2N547IoE76hm8Iax56O0U76LhOMyeoP_Z9o1n',
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0',
     }
 
@@ -25,9 +25,16 @@ ITEM_PIPELINES = {
     # 'weibo.pipelines.MyVideoPipeline': 305,
     'weibo.pipelines.JsonlinesPipeline':306
 }
+
+DOWNLOADER_MIDDLEWARES = {
+    "weibo.middlewares.UserAgentRandomMiddleware":500
+    # "weibo.middlewares.WeiboDownloaderMiddleware":499,
+}
+
+
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
-KEYWORD_LIST = ['香港人']  # 或者 KEYWORD_LIST = 'keyword_list.txt'
+KEYWORD_LIST = ['港人','港青','香港']  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 0
 # 筛选结果微博中必需包含的内容，0代表不筛选，获取全部微博，1代表搜索包含图片的微博，2代表包含视频的微博，3代表包含音乐的微博，4代表包含短链接的微博
