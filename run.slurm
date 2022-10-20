@@ -8,4 +8,4 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem-per-cpu=1500M
 
-python3 pro/bin/start.py
+sh test.sh
