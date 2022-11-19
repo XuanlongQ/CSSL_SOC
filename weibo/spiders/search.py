@@ -11,6 +11,7 @@ from scrapy.exceptions import CloseSpider
 from scrapy.utils.project import get_project_settings
 from weibo.items import WeiboItem
 
+import weibo.utils.parsefun as parsefun
 
 class SearchSpider(scrapy.Spider):
     name = 'search'
@@ -350,8 +351,7 @@ class SearchSpider(scrapy.Spider):
     def parse_weibo(self, response):
         """解析网页中的微博信息"""
         keyword = response.meta.get('keyword')
-        print(keyword)
-        print("here.....",response)
+        parsefun.logResponse(response)
         
         # with open('response.html','w',encoding= 'utf-8') as f:
         #     f.write(response.text)
@@ -550,7 +550,7 @@ class SearchSpider(scrapy.Spider):
                         yield {'weibo': retweet, 'keyword': keyword}
                         weibo['retweet_id'] = retweet['id']
                         
-                    print(weibo)
+                    # print(weibo)
                     yield {'weibo': weibo, 'keyword': keyword}
             except Exception as e:
                 print(e)   

@@ -12,14 +12,14 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept':
     'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7',
-    'cookie': 'SINAGLOBAL=8066624364689.468.1654595897483; _ga=GA1.2.2143779802.1660891878; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh9eBGkaC9wQ3PhJeh9NX_.5JpX5KMhUgL.Fo2N1hzReh5pSK22dJLoIp8Sdcyydgfy98vWdsLAqgxLI5tt; UOR=login.sina.com.cn,vdisk.weibo.com,login.sina.com.cn; ALF=1697782821; SSOLoginState=1666246823; SCF=AooKFXGlf0m7HsyOoy1_USSt0EmGm_vpQclLi5tPcfWuBZRTZwr75xwVXO8KAEJYNY5scSQizTETwqzuJXGt4cg.; SUB=_2A25OVJj4DeRhGedJ41AZ8C7Nzj2IHXVtI40wrDV8PUNbmtANLUr2kW9NUaL1YwJ6qkXDvUOisAWZj-G1IlU4j66j; _s_tentry=login.sina.com.cn; Apache=654045235353.2245.1666246825428; ULV=1666246825446:12:4:3:654045235353.2245.1666246825428:1666082380756; XSRF-TOKEN=7Ckm4ckhNr6QVc5Pe8IbmCk-; WBPSESS=VvGGQhCVSQnhtkxhRBuaUyVBCdMk4nlySnVYpDmdebhuBV4D7iQ8nfrK4i2DRstzRmGFrCZ5Tip2FhJIn7mMLpkx3Fl2N547IoE76hm8Iax56O0U76LhOMyeoP_Z9o1n',
+    'cookie': 'SINAGLOBAL=8066624364689.468.1654595897483; _ga=GA1.2.2143779802.1660891878; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh9eBGkaC9wQ3PhJeh9NX_.5JpX5KMhUgL.Fo2N1hzReh5pSK22dJLoIp8Sdcyydgfy98vWdsLAqgxLI5tt; UOR=login.sina.com.cn,vdisk.weibo.com,login.sina.com.cn; SCF=AooKFXGlf0m7HsyOoy1_USSt0EmGm_vpQclLi5tPcfWu6oVmYCQjkcaEoZP5YqbjhGqfGEPMyVqQyxA8cw_5q0c.; SUB=_2A25OfAOyDeRhGedJ41AZ8C7Nzj2IHXVtCHJ6rDV8PUNbmtAKLXfAkW9NUaL1Y4ImHanb82nSiKb3PfviIndiEa-p; ALF=1700374368; SSOLoginState=1668838370; _s_tentry=-; Apache=2863556203541.9526.1668838823244; ULV=1668838823247:14:1:1:2863556203541.9526.1668838823244:1666681198352; XSRF-TOKEN=TDdPu_jIwat1FmvIwiztRLNn; WBPSESS=VvGGQhCVSQnhtkxhRBuaUyVBCdMk4nlySnVYpDmdebgHpWko2XYfbacYvr7wLSuxrHvmXRzwWmZ50oV6fzocsob_4QKTjOrGeKDZ7oXFMHk1_SMAswaCFN-ZMbA3WyyW',
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0',
     }
 
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
     # 'weibo.pipelines.CsvPipeline': 301
-    # 'weibo.pipelines.MysqlPipeline': 302,
+    'weibo.pipelines.MysqlPipeline': 302,
     # 'weibo.pipelines.MongoPipeline': 303,
     # 'weibo.pipelines.MyImagesPipeline': 304,
     # 'weibo.pipelines.MyVideoPipeline': 305,
@@ -35,7 +35,7 @@ DOWNLOADER_MIDDLEWARES = {
 
 # 要搜索的关键词列表，可写多个, 值可以是由关键词或话题组成的列表，也可以是包含关键词的txt文件路径，
 # 如'keyword_list.txt'，txt文件中每个关键词占一行
-KEYWORD_LIST = ['港人','港青','香港']  # 或者 KEYWORD_LIST = 'keyword_list.txt'
+KEYWORD_LIST = ['香港人']  # 或者 KEYWORD_LIST = 'keyword_list.txt'
 # 要搜索的微博类型，0代表搜索全部微博，1代表搜索全部原创微博，2代表热门微博，3代表关注人微博，4代表认证用户微博，5代表媒体微博，6代表观点微博
 WEIBO_TYPE = 0
 # 筛选结果微博中必需包含的内容，0代表不筛选，获取全部微博，1代表搜索包含图片的微博，2代表包含视频的微博，3代表包含音乐的微博，4代表包含短链接的微博
@@ -44,9 +44,9 @@ CONTAIN_TYPE = 0
 # 具体支持的地名见region.py文件，注意只支持省或直辖市的名字，省下面的市名及直辖市下面的区县名不支持，不筛选请用“全部”
 REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
-START_DATE = '2019-01-01'
+START_DATE = '2022-11-10'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = '2022-01-01'
+END_DATE = '2022-11-17'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 46
@@ -57,11 +57,11 @@ FILES_STORE = './'
 # 配置MongoDB数据库
 # MONGO_URI = 'localhost'
 # 配置MySQL数据库，以下为默认配置，可以根据实际情况更改，程序会自动生成一个名为weibo的数据库，如果想换其它名字请更改MYSQL_DATABASE值
-# MYSQL_HOST = 'localhost'
-# MYSQL_PORT = 3306
-# MYSQL_USER = 'root'
-# MYSQL_PASSWORD = '123456'
-# MYSQL_DATABASE = 'weibo'
+MYSQL_HOST = 'localhost'
+MYSQL_PORT = 3306
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'qxl931007'
+MYSQL_DATABASE = 'test_db'
 
 
 # 配置线程数 默认 16

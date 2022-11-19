@@ -178,11 +178,11 @@ class MysqlPipeline(object):
                 'host': settings.get('MYSQL_HOST', 'localhost'),
                 'port': settings.get('MYSQL_PORT', 3306),
                 'user': settings.get('MYSQL_USER', 'root'),
-                'password': settings.get('MYSQL_PASSWORD', '123456'),
+                'password': settings.get('MYSQL_PASSWORD', 'qxl931007'),
                 'charset': 'utf8mb4'
             }
             self.create_database(mysql_config)
-            mysql_config['db'] = settings.get('MYSQL_DATABASE', 'weibo')
+            mysql_config['db'] = settings.get('MYSQL_DATABASE', 'test_db')
             self.db = pymysql.connect(**mysql_config)
             self.cursor = self.db.cursor()
             self.create_table()
