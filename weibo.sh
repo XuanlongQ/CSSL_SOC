@@ -7,6 +7,7 @@ echo `pwd`
 echo $path
 git pull
 echo "Have updated cookies"
+conda activate weibosearch
 sbatch run.slurm
 date
 echo "stop shell command"
