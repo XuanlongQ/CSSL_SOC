@@ -1,1 +1,1 @@
-59 23 * * * sh weibo.sh
+59 23 * * * sh /home/xlqin/workdir/program/tonytam/spiderClub/CSSL_SOC/weibo.sh
