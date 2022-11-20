@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=xuanlong@cuhk.edu.hk,yjli@link.cuhk.edu.hk
+#SBATCH --mail-user=xuanlong@link.cuhk.edu.hk,yjli@link.cuhk.edu.hk
 #SBATCH --job-name=weibo-search-xuanlong
 #SBATCH --output=scraping.out
 #SBATCH --ntasks=2
