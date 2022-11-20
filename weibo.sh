@@ -2,7 +2,7 @@ echo "---start shell command----"
 date
 pwd
 echo "Change to the weibo-search path"
-cd /Users/xuanlong/Documents/program/python/src/tam/spider/weibo-search
+cd /home/xlqin/workdir/program/tonytam/spiderClub/CSSL_SOC
 echo `pwd`
 echo $path
 git pull
