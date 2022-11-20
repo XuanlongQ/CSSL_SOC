@@ -19,7 +19,7 @@ DEFAULT_REQUEST_HEADERS = {
 ITEM_PIPELINES = {
     'weibo.pipelines.DuplicatesPipeline': 300,
     # 'weibo.pipelines.CsvPipeline': 301
-    'weibo.pipelines.MysqlPipeline': 302,
+    # 'weibo.pipelines.MysqlPipeline': 302,
     # 'weibo.pipelines.MongoPipeline': 303,
     # 'weibo.pipelines.MyImagesPipeline': 304,
     # 'weibo.pipelines.MyVideoPipeline': 305,
@@ -46,7 +46,7 @@ REGION = ['全部']
 # 搜索的起始日期，为yyyy-mm-dd形式，搜索结果包含该日期
 START_DATE = '2019-01-01'
 # 搜索的终止日期，为yyyy-mm-dd形式，搜索结果包含该日期
-END_DATE = '2019-12-01'
+END_DATE = '2019-01-10'
 # 进一步细分搜索的阈值，若结果页数大于等于该值，则认为结果没有完全展示，细分搜索条件重新搜索以获取更多微博。数值越大速度越快，也越有可能漏掉微博；数值越小速度越慢，获取的微博就越多。
 # 建议数值大小设置在40到50之间。
 FURTHER_THRESHOLD = 46
@@ -57,11 +57,11 @@ FILES_STORE = './'
 # 配置MongoDB数据库
 # MONGO_URI = 'localhost'
 # 配置MySQL数据库，以下为默认配置，可以根据实际情况更改，程序会自动生成一个名为weibo的数据库，如果想换其它名字请更改MYSQL_DATABASE值
-MYSQL_HOST = 'localhost'
-MYSQL_PORT = 3306
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'qxl931007'
-MYSQL_DATABASE = 'test_db'
+# MYSQL_HOST = 'localhost'
+# MYSQL_PORT = 3306
+# MYSQL_USER = 'root'
+# MYSQL_PASSWORD = 'xxxx'
+# MYSQL_DATABASE = 'test_db'
 
 
 # 配置线程数 默认 16

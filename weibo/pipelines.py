@@ -9,6 +9,7 @@ import copy
 import csv
 import os
 import jsonlines
+import time
 
 import scrapy
 from scrapy.exceptions import DropItem
@@ -20,10 +21,11 @@ settings = get_project_settings()
 
 class JsonlinesPipeline(object):
     def process_item(self, item, spider):
-        base_dir = '结果文件' + os.sep + item['keyword']
+        base_dir = 'result' + os.sep + item['keyword']
         if not os.path.isdir(base_dir):
             os.makedirs(base_dir)
-        file_path = base_dir + os.sep + item['keyword'] + '.jl'
+        t = time.strftime("%Y-%m-%d", time.localtime()) 
+        file_path = base_dir + os.sep + item['keyword'] +str(t)+'.jl'
         if item:
             dic = dict(item['weibo'])
             with jsonlines.open(file_path, 'a') as f:
