@@ -24,7 +24,8 @@ class JsonlinesPipeline(object):
         base_dir = 'result' + os.sep + item['keyword']
         if not os.path.isdir(base_dir):
             os.makedirs(base_dir)
-        t = time.strftime("%Y-%m-%d", time.localtime()) 
+        # t = time.strftime("%Y-%m-%d", time.localtime()) 
+        t = settings.get('START_DATE')
         file_path = base_dir + os.sep + item['keyword'] +str(t)+'.jl'
         if item:
             dic = dict(item['weibo'])
