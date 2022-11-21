@@ -9,7 +9,7 @@ echo $path
 git pull
 echo "Have updated cookies"
 eval "$(conda shell.bash hook)"
-conda activate weibosearch && scrapy crawl search
+conda activate weibosearch
 sbatch run.slurm
 date
 echo "stop shell command"
